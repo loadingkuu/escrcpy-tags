@@ -15,6 +15,7 @@
         style="width: 100%"
         height="100%"
         row-key="id"
+        default-expand-all
         class="el-table--beautify"
         @selection-change="onSelectionChange"
       >
@@ -111,6 +112,22 @@
 
             <MoreDropdown v-if="['device'].includes(row.status)" v-bind="{ row, toggleRowExpansion }" />
 
+            <Record
+              v-if="['device'].includes(row.status)"
+              v-slot="{ loading: recordLoading, trigger }"
+              v-bind="{ row, toggleRowExpansion }"
+            >
+              <el-button
+                type="primary"
+                text
+                :loading="recordLoading"
+                icon="VideoCamera"
+                :title="$t('device.actions.more.record.name')"
+                @click="trigger"
+              >
+              </el-button>
+            </Record>
+
             <WirelessAction v-if="['device', 'unauthorized'].includes(row.status)" v-bind="{ row, handleConnect, handleRefresh }" />
 
             <RemoveAction
@@ -130,7 +147,12 @@
           </template>
 
           <template #default="{ row }">
-            <ControlBar :device="row" :swapy-enabled="true" button-class="!min-w-10 !w-4vw !max-w-12" />
+            <div class="flex items-center gap-2 px-4 py-2.5 mx-2 my-1 rounded-lg bg-gray-50 dark:bg-gray-800/40">
+              <el-icon class="text-gray-400 flex-none text-base">
+                <CollectionTag />
+              </el-icon>
+              <Tags :device="row" size="default" />
+            </div>
           </template>
         </el-table-column>
       </el-table>
@@ -163,10 +185,11 @@ import { uniqBy } from 'lodash-es'
 
 import AppEmpty from '$/components/app-empty/index.vue'
 import BatchActions from './components/batch-actions/index.vue'
-import ControlBar from '$/components/control-bar/index.vue'
 import MirrorAction from './components/mirror-action/index.vue'
 import MoreDropdown from './components/more-dropdown/index.vue'
+import Record from './components/more-dropdown/components/record/index.vue'
 import Remark from './components/remark/index.vue'
+import Tags from './components/tags/index.vue'
 import WirelessAction from './components/wireless-action/index.vue'
 import ConnectAction from './components/connect-action/index.vue'
 import RemoveAction from './components/remove-action/index.vue'

@@ -1153,5 +1153,11 @@
   "time.unit.second": "секунда",
   "time.unit.week": "неделя",
   "time.unit.year": "год",
-  "time.update": "Время обновления"
+  "time.update": "Время обновления",
+  "device.tags.name": "Метки",
+  "device.tags.assign": "Выберите метки (клик — переключить, звезда — текущая)",
+  "device.tags.setCurrent": "Сделать текущей",
+  "device.tags.empty": "Меток пока нет, создайте ниже",
+  "device.tags.new.placeholder": "Название новой метки",
+  "device.tags.remove.confirm": "Удалить метку «{name}»?"
 }

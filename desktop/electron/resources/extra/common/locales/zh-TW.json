@@ -1153,5 +1153,11 @@
   "time.unit.second": "秒",
   "time.unit.week": "週",
   "time.unit.year": "年",
-  "time.update": "更新時間"
+  "time.update": "更新時間",
+  "device.tags.name": "標籤",
+  "device.tags.assign": "選擇標籤（點擊切換，星號設為目前）",
+  "device.tags.setCurrent": "設為目前",
+  "device.tags.empty": "尚無標籤，請在下方新增",
+  "device.tags.new.placeholder": "新標籤名稱",
+  "device.tags.remove.confirm": "確定刪除標籤「{name}」嗎？"
 }

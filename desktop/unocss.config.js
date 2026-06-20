@@ -1,3 +1,4 @@
+import { createRequire } from 'node:module'
 import transformerDirectives from '@unocss/transformer-directives'
 import { presetShades } from '@viarotel-org/unocss-preset-shades'
 import { defineConfig, presetWind } from 'unocss'
@@ -7,9 +8,24 @@ import presetTypography from '@unocss/preset-typography'
 
 const presetMain = presetWind()
 
+// Load every Iconify collection explicitly from `@iconify/json`. The default
+// `presetIcons()` resolver fails to locate `@iconify/json` under pnpm's
+// isolated node_modules, which left all `i-*` icons (window controls, toolbar,
+// control bar, …) silently empty/invisible.
+const require = createRequire(import.meta.url)
+
+const iconifyCollections = require('@iconify/json/collections.json')
+
+const iconCollections = Object.fromEntries(
+  Object.keys(iconifyCollections).map(prefix => [
+    prefix,
+    () => require(`@iconify/json/json/${prefix}.json`),
+  ]),
+)
+
 const presets = [
   presetMain,
-  presetIcons(),
+  presetIcons({ collections: iconCollections }),
   presetShades(primaryColor),
   presetTypography(),
 ]

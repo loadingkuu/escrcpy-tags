@@ -1153,5 +1153,11 @@
   "time.unit.second": "ثانية",
   "time.unit.week": "أسبوع",
   "time.unit.year": "سنة",
-  "time.update": "وقت التحديث"
+  "time.update": "وقت التحديث",
+  "device.tags.name": "الوسوم",
+  "device.tags.assign": "اختر الوسوم (انقر للتبديل، النجمة للتعيين كحالي)",
+  "device.tags.setCurrent": "تعيين كحالي",
+  "device.tags.empty": "لا توجد وسوم بعد، أنشئ واحدًا بالأسفل",
+  "device.tags.new.placeholder": "اسم وسم جديد",
+  "device.tags.remove.confirm": "حذف الوسم \"{name}\"؟"
 }

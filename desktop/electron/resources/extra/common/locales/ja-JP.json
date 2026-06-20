@@ -1153,5 +1153,11 @@
   "time.unit.second": "秒",
   "time.unit.week": "週間",
   "time.unit.year": "年",
-  "time.update": "更新時間"
+  "time.update": "更新時間",
+  "device.tags.name": "タグ",
+  "device.tags.assign": "タグを選択（クリックで切替、星で現在に設定）",
+  "device.tags.setCurrent": "現在に設定",
+  "device.tags.empty": "タグがありません。下で作成してください",
+  "device.tags.new.placeholder": "新しいタグ名",
+  "device.tags.remove.confirm": "タグ「{name}」を削除しますか？"
 }

@@ -1153,5 +1153,11 @@
   "time.unit.second": "秒",
   "time.unit.week": "周",
   "time.unit.year": "年",
-  "time.update": "更新时间"
+  "time.update": "更新时间",
+  "device.tags.name": "标签",
+  "device.tags.assign": "选择标签（点击切换，星标设为当前）",
+  "device.tags.setCurrent": "设为当前",
+  "device.tags.empty": "暂无标签，请在下方新建",
+  "device.tags.new.placeholder": "新标签名称",
+  "device.tags.remove.confirm": "确定删除标签 “{name}” 吗？"
 }

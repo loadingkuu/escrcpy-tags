@@ -1153,5 +1153,11 @@
   "time.unit.second": "second",
   "time.unit.week": "week",
   "time.unit.year": "year",
-  "time.update": "Update time"
+  "time.update": "Update time",
+  "device.tags.name": "Tags",
+  "device.tags.assign": "Select tags (click to toggle, star sets current)",
+  "device.tags.setCurrent": "Set as current",
+  "device.tags.empty": "No tags yet, create one below",
+  "device.tags.new.placeholder": "New tag name",
+  "device.tags.remove.confirm": "Delete tag \"{name}\"?"
 }

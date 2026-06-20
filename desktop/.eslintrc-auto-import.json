@@ -371,6 +371,8 @@
     "useSidebarStore": true,
     "useControlSidebarStore": true,
     "useLaunchOrientation": true,
-    "ScheduleStatusGroups": true
+    "ScheduleStatusGroups": true,
+    "presetTagColors": true,
+    "useTagStore": true
   }
 }
