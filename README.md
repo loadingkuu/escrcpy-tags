@@ -9,6 +9,10 @@
 
 📱 使用 scrcpy 以图形化方式显示和控制你的 Android 设备。完整功能与文档请参考上游项目 [viarotel-org/escrcpy](https://github.com/viarotel-org/escrcpy)。
 
+<img src="./docs/screenshots/tags.png" alt="每台设备独立的标签" width="100%">
+
+> 每台手机下方常驻独立的标签栏：当前任务高亮（彩色 + ⭐），其余标签正常显示，互不混淆。
+
 ---
 
 ## ✨ 本版本新增 / 改动

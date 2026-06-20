@@ -1,38 +1,24 @@
 name: release-assets
 
+# 打 tag（如 v2.11.2）或在 Actions 里手动运行，即自动构建 Windows 版并发布到 Release。
 on:
   workflow_dispatch:
   push:
     tags:
-      - 'v*.*.*'
+      - 'v*'
 
 permissions:
   contents: write
-  pull-requests: write
 
 jobs:
   release:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        include:
-          - os: ubuntu-latest
-            platform: linux
-            build_command: build:linux
-          - os: macos-latest
-            platform: mac
-            build_command: build:mac
-          - os: windows-latest
-            platform: win
-            build_command: build:win
-    env:
-      VITE_GITEE_APP_TOKEN: ${{ secrets.VITE_GITEE_APP_TOKEN }}
+    runs-on: windows-latest
     steps:
       - name: Check out Git repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
 
       - name: Install Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v4
         with:
           node-version: 24
 
@@ -44,18 +30,10 @@ jobs:
       - name: Install Dependencies
         run: pnpm install
 
-      - name: Install Flatpak toolchain (Linux)
-        if: matrix.platform == 'linux'
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y flatpak flatpak-builder libudev-dev
-          flatpak --user remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-          flatpak --user install -y --noninteractive flathub org.freedesktop.Platform//23.08 org.freedesktop.Sdk//23.08 org.electronjs.Electron2.BaseApp//23.08
+      - name: Build Windows
+        run: pnpm build:win
 
-      - name: Build ${{ matrix.platform }}
-        run: pnpm ${{ matrix.build_command }}
-
-      - name: Create Release
+      - name: Publish to Release
         uses: softprops/action-gh-release@v2
         with:
           draft: false
@@ -64,12 +42,5 @@ jobs:
           files: |
             desktop/dist-release/*.exe
             desktop/dist-release/*.zip
-            desktop/dist-release/*.dmg
-            desktop/dist-release/*.AppImage
-            desktop/dist-release/*.flatpak
-            desktop/dist-release/*.snap
-            desktop/dist-release/*.deb
-            desktop/dist-release/*.rpm
-            desktop/dist-release/*.tar.gz
             desktop/dist-release/*.blockmap
             desktop/dist-release/latest*.yml
