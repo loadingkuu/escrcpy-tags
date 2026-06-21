@@ -131,8 +131,8 @@ export default {
 
   publish: {
     provider: 'github',
-    owner: 'viarotel-org',
-    repo: 'escrcpy',
-    updaterCacheDirName: 'escrcpy-updater',
+    owner: 'loadingkuu',
+    repo: 'escrcpy-tags',
+    updaterCacheDirName: 'escrcpy-tags-updater',
   },
 }
