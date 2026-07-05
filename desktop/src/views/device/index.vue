@@ -54,7 +54,7 @@
           sortable
           show-overflow-tooltip
           align="left"
-          min-width="200"
+          width="200"
         >
           <template #default="{ row }">
             <div class="flex items-center space-x-2 relative">
@@ -77,7 +77,7 @@
           sortable
           show-overflow-tooltip
           align="left"
-          min-width="150"
+          width="130"
           :filters="remarkFilters"
           :filter-method="remarkFilterMethod"
         >
@@ -93,7 +93,7 @@
           align="left"
           sortable
           show-overflow-tooltip
-          min-width="150"
+          width="120"
           :filters="statusFilters"
           :filter-method="filterMethod"
         >
@@ -151,8 +151,6 @@
               </el-button>
             </Record>
 
-            <WirelessAction v-if="['device', 'unauthorized'].includes(row.status)" v-bind="{ row, handleConnect, handleRefresh }" />
-
             <RemoveAction
               v-if="['offline'].includes(row.status)"
               v-bind="{
@@ -197,7 +195,6 @@ import MoreDropdown from './components/more-dropdown/index.vue'
 import Record from './components/more-dropdown/components/record/index.vue'
 import Remark from './components/remark/index.vue'
 import Tags from './components/tags/index.vue'
-import WirelessAction from './components/wireless-action/index.vue'
 import ConnectAction from './components/connect-action/index.vue'
 import RemoveAction from './components/remove-action/index.vue'
 import WirelessGroup from './components/wireless-group/index.vue'
@@ -397,8 +394,19 @@ onActivated(() => {
 :deep() {
   .el-table {
     --el-empty-image-width: 24vh;
+
+    /* 缩小行高：减小单元格上下内边距 */
+    .el-table__cell {
+      @apply !py-1.5;
+    }
+
+    /* 缩小列间距：减小单元格左右内边距 */
+    .cell {
+      @apply !px-2;
+    }
+
     .el-table__row .cell {
-      @apply !py-1;
+      @apply !py-0;
     }
 
     .el-table__expanded-cell {
