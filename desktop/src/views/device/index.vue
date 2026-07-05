@@ -15,9 +15,10 @@
         style="width: 100%"
         height="100%"
         row-key="id"
-        default-expand-all
+        :expand-row-keys="expandedKeys"
         class="el-table--beautify"
         @selection-change="onSelectionChange"
+        @expand-change="onExpandChange"
       >
         <template #empty>
           <AppEmpty v-show="!loading" :sub-title="$t('device.list.empty')">
@@ -25,6 +26,28 @@
         </template>
 
         <el-table-column type="selection" width="30"></el-table-column>
+
+        <el-table-column type="expand" width="48">
+          <template #header>
+            <el-icon
+              class="cursor-pointer hover:text-primary-500 transition-colors"
+              :title="allExpanded ? $t('device.tags.collapseAll') : $t('device.tags.expandAll')"
+              @click="toggleExpandAll"
+            >
+              <CaretTop v-if="allExpanded" />
+              <CaretBottom v-else />
+            </el-icon>
+          </template>
+
+          <template #default="{ row }">
+            <div class="flex items-center gap-2 px-4 py-2.5 mx-2 my-1 rounded-lg bg-gray-50 dark:bg-gray-800/40">
+              <el-icon class="text-gray-400 flex-none text-base">
+                <CollectionTag />
+              </el-icon>
+              <Tags :device="row" size="default" />
+            </div>
+          </template>
+        </el-table-column>
 
         <el-table-column
           :label="$t('device.serial')"
@@ -139,22 +162,6 @@
             />
           </div>
         </el-table-column>
-        <el-table-column type="expand">
-          <template #header>
-            <el-icon class="" :title="$t('device.control.more')">
-              <Operation class="" />
-            </el-icon>
-          </template>
-
-          <template #default="{ row }">
-            <div class="flex items-center gap-2 px-4 py-2.5 mx-2 my-1 rounded-lg bg-gray-50 dark:bg-gray-800/40">
-              <el-icon class="text-gray-400 flex-none text-base">
-                <CollectionTag />
-              </el-icon>
-              <Tags :device="row" size="default" />
-            </div>
-          </template>
-        </el-table-column>
       </el-table>
     </div>
 
@@ -220,6 +227,36 @@ const deviceList = computed({
     deviceStore.list = val
   },
 })
+
+// Controlled expansion of the per-device tag bars (default: all expanded),
+// with one-click collapse-all / expand-all via the expand-column header.
+const expandedKeys = ref([])
+
+const allExpanded = computed(() =>
+  deviceList.value.length > 0 && expandedKeys.value.length >= deviceList.value.length,
+)
+
+function toggleExpandAll() {
+  expandedKeys.value = allExpanded.value ? [] : deviceList.value.map(item => item.id)
+}
+
+function onExpandChange(row, expandedRows) {
+  if (Array.isArray(expandedRows)) {
+    expandedKeys.value = expandedRows.map(item => item.id)
+  }
+}
+
+// Keep tag bars expanded by default: auto-expand newly connected devices and
+// drop ids no longer present, while preserving any manual collapse state.
+watch(
+  () => deviceList.value.map(item => item.id),
+  (ids, oldIds) => {
+    const known = new Set(oldIds || [])
+    const added = ids.filter(id => !known.has(id))
+    expandedKeys.value = [...new Set([...expandedKeys.value, ...added])].filter(id => ids.includes(id))
+  },
+  { immediate: true },
+)
 
 const isMultipleRow = computed(() => selectionRows.value.length > 0)
 

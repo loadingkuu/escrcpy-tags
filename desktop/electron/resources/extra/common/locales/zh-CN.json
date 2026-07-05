@@ -1159,5 +1159,7 @@
   "device.tags.setCurrent": "设为当前",
   "device.tags.empty": "暂无标签，请在下方新建",
   "device.tags.new.placeholder": "新标签名称",
-  "device.tags.remove.confirm": "确定删除标签 “{name}” 吗？"
+  "device.tags.remove.confirm": "确定删除标签 “{name}” 吗？",
+  "device.tags.expandAll": "展开全部标签",
+  "device.tags.collapseAll": "折叠全部标签"
 }

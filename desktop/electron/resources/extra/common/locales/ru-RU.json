@@ -1159,5 +1159,7 @@
   "device.tags.setCurrent": "Сделать текущей",
   "device.tags.empty": "Меток пока нет, создайте ниже",
   "device.tags.new.placeholder": "Название новой метки",
-  "device.tags.remove.confirm": "Удалить метку «{name}»?"
+  "device.tags.remove.confirm": "Удалить метку «{name}»?",
+  "device.tags.expandAll": "Развернуть все метки",
+  "device.tags.collapseAll": "Свернуть все метки"
 }

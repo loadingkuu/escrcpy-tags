@@ -1159,5 +1159,7 @@
   "device.tags.setCurrent": "設為目前",
   "device.tags.empty": "尚無標籤，請在下方新增",
   "device.tags.new.placeholder": "新標籤名稱",
-  "device.tags.remove.confirm": "確定刪除標籤「{name}」嗎？"
+  "device.tags.remove.confirm": "確定刪除標籤「{name}」嗎？",
+  "device.tags.expandAll": "展開全部標籤",
+  "device.tags.collapseAll": "摺疊全部標籤"
 }

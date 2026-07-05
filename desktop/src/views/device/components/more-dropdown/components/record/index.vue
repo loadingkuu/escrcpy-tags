@@ -83,9 +83,16 @@ export default {
         args += ` ${commands.join(' ')}`
       }
 
+      // 禁用视频播放时 scrcpy 仍会弹出一个很小的窗口；若用户没自定义窗口尺寸，
+      // 给它一个稍大的默认尺寸，方便区分不同设备的窗口。
+      if (args.includes('--no-video-playback') && !/--window-width/.test(args)) {
+        args += ' --window-width=280 --window-height=320'
+      }
+
       try {
         const recording = this.$scrcpy.record(row.id, {
-          title: this.deviceStore.getLabel(row, ({ appName, deviceName }) => `${appName}${this.activeModel.label}-${deviceName}`),
+          // 窗口标题只用设备名称（用户一般命名为 01/02），便于分辨
+          title: row.remark || row.name,
           savePath,
           args,
         })

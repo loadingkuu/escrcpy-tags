@@ -1159,5 +1159,7 @@
   "device.tags.setCurrent": "現在に設定",
   "device.tags.empty": "タグがありません。下で作成してください",
   "device.tags.new.placeholder": "新しいタグ名",
-  "device.tags.remove.confirm": "タグ「{name}」を削除しますか？"
+  "device.tags.remove.confirm": "タグ「{name}」を削除しますか？",
+  "device.tags.expandAll": "すべてのタグを展開",
+  "device.tags.collapseAll": "すべてのタグを折りたたむ"
 }

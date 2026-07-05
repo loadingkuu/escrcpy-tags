@@ -1159,5 +1159,7 @@
   "device.tags.setCurrent": "Set as current",
   "device.tags.empty": "No tags yet, create one below",
   "device.tags.new.placeholder": "New tag name",
-  "device.tags.remove.confirm": "Delete tag \"{name}\"?"
+  "device.tags.remove.confirm": "Delete tag \"{name}\"?",
+  "device.tags.expandAll": "Expand all tags",
+  "device.tags.collapseAll": "Collapse all tags"
 }
