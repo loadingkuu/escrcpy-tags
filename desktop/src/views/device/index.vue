@@ -54,7 +54,7 @@
           sortable
           show-overflow-tooltip
           align="left"
-          width="200"
+          min-width="170"
         >
           <template #default="{ row }">
             <div class="flex items-center space-x-2 relative">
@@ -76,8 +76,8 @@
           prop="remark"
           sortable
           show-overflow-tooltip
-          align="left"
-          width="130"
+          align="center"
+          min-width="110"
           :filters="remarkFilters"
           :filter-method="remarkFilterMethod"
         >
@@ -90,10 +90,10 @@
           v-slot="{ row }"
           :label="$t('device.status')"
           prop="status"
-          align="left"
+          align="center"
           sortable
           show-overflow-tooltip
-          width="120"
+          min-width="110"
           :filters="statusFilters"
           :filter-method="filterMethod"
         >
@@ -115,10 +115,10 @@
         <el-table-column
           v-slot="{ row }"
           :label="$t('common.actions')"
-          align="left"
-          min-width="150"
+          align="center"
+          min-width="140"
         >
-          <div class="flex items-center !space-x-0">
+          <div class="flex items-center justify-center !space-x-0">
             <ConnectAction
               v-if="['offline'].includes(row.status) && row.wifi"
               v-bind="{

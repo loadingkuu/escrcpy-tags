@@ -1,5 +1,5 @@
 <template>
-  <el-dropdown :hide-on-click="false" toggle="click">
+  <el-dropdown :hide-on-click="false" trigger="click">
     <el-button
       type="primary"
       text
