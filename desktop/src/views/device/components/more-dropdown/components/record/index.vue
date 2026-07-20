@@ -83,10 +83,11 @@ export default {
         args += ` ${commands.join(' ')}`
       }
 
-      // 禁用视频播放时 scrcpy 仍会弹出一个很小的窗口；若用户没自定义窗口尺寸，
-      // 给它一个稍大的默认尺寸，方便区分不同设备的窗口。
+      // 禁用视频播放时 scrcpy 仍会弹出一个占位窗口；若用户没自定义窗口尺寸，
+      // 做成“宽而矮”的一条：宽度够看清标题栏里的设备序号（01/02…），高度尽量矮。
+      // 关闭宽高比锁定，否则设备竖屏比例会把窗口重新拉高。
       if (args.includes('--no-video-playback') && !/--window-width/.test(args)) {
-        args += ' --window-width=280 --window-height=320'
+        args += ' --window-width=270 --window-height=40 --no-window-aspect-ratio-lock'
       }
 
       try {
